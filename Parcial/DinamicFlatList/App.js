@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { StatusBar } from 'expo-status-bar';
+import { FlatList, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import CustomModal from './componentes/CustomModal.jsx';
 
 const Cursos = [
@@ -20,27 +20,34 @@ export default function App() {
     setModalVisible(true);
   }
 
-  const renderCard = ({item}) => {
-    <TouchableOpacity
-      onPress={() => {manejarPresionCurso(item.titulo)}}
-      activeOpacity={0.7}
-    >
-      <View>
-        <Text style={styles.title} >{item.titulo}</Text>
-        <Text style={styles.subtitle} >Dura: {item.duracion} | rating: {item.rating}</Text>
-      </View>
-    </TouchableOpacity>
+  const renderCard = ({ item }) => {
+    return(
+      <TouchableOpacity
+        onPress={() => {manejarPresionCurso(item.titulo)}}
+        activeOpacity={0.7}
+        style={styles.card}
+      >
+        <View>
+            <Text style={styles.title} >{item.titulo}</Text>
+            <Text style={styles.subtitle} >Dura: {item.duracion} | rating: {item.rating}</Text>
+        </View>
+      </TouchableOpacity>
+    );
   }
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.header}>Mis Cursos</Text>
-      <FlatList
-        data={Cursos}
-        renderItem={renderCard}
-        keyExtractor={item => item.id}
-        contentContainerStyle={styles.listContainer}
-      />
+      <View>
+        <StatusBar style="black"/>
+        <Text style={styles.header}>Mis Cursos</Text>
+        <FlatList
+          data={Cursos}
+          keyExtractor={(item) => item.id}
+          renderItem={renderCard}
+          contentContainerStyle={styles.listContainer}
+        />
+        
+      </View>
       <CustomModal
         visible={modalVisible}
         onClose={() => setModalVisible(false)}
@@ -53,7 +60,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#ffffff',
   },
   header:{
     fontSize: 24,
@@ -66,7 +73,7 @@ const styles = StyleSheet.create({
     paddingBottom: 16,
   },
   card: {
-    backgroundColor: '#fff',
+    backgroundColor: '#d0d0d0',
     padding: 16,
     marginVertical: 8,
     borderRadius: 12,

@@ -1,7 +1,7 @@
 import React from "react";
 import { Modal, View, Text, Button, StyleSheet } from 'react-native';
 
-const CustomModal = (visible, onClose, contenido) => {
+const CustomModal = ({ visible, onClose, contenido }) => {
     return(
         <Modal
             animationType="slide"
@@ -9,13 +9,13 @@ const CustomModal = (visible, onClose, contenido) => {
             visible={visible}
             onRequestClose={onClose}
         >
-            <View>
-                <View>
-                    <Text>
+            <View style={styles.centeredView}>
+                <View style={styles.modalView}>
+                    <Text style={styles.modalText}>
                         Hola, te has inscrito al curso: {contenido ? contenido.valor : "Ninguno"}.
                     </Text>
                     <Button
-                        tittle='Cerrar'
+                        title='Cerrar'
                         onPress={onClose}
                     />
                 </View>
