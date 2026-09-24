@@ -2,7 +2,10 @@ const express = require('express');
 const cors = require('cors');
 const { MongoClient } = require('mongodb');
 
-const uri = "mongodb://202360671:???@ac-xlhafdh-shard-00-00.7dtlhqi.mongodb.net:27017,ac-xlhafdh-shard-00-01.7dtlhqi.mongodb.net:27017,ac-xlhafdh-shard-00-02.7dtlhqi.mongodb.net:27017/?ssl=true&replicaSet=atlas-vwzl6p-shard-0&authSource=admin&appName=Cluster0";
+const AppUser = '202360671';
+const MongoContrasena = '????';
+
+const uri = `mongodb://${AppUser}:${MongoContrasena}@ac-xlhafdh-shard-00-00.7dtlhqi.mongodb.net:27017,ac-xlhafdh-shard-00-01.7dtlhqi.mongodb.net:27017,ac-xlhafdh-shard-00-02.7dtlhqi.mongodb.net:27017/?ssl=true&replicaSet=atlas-vwzl6p-shard-0&authSource=admin&appName=Cluster0`;
 
 const client = new MongoClient(uri);
 
@@ -32,6 +35,20 @@ conectarMongoDB().then(
     }
 );
 
+app.post("/login", (req, res) => {
+    const { username, password } = req.body;
+
+    if (!username || !password) {
+        return res.status(400).json({ success: false, mensaje: "Faltan usuario o contraseña." });
+    }
+
+    if (username === AppUser && password === AppPassword) {
+        res.json({ success: true });
+    } else {
+        res.status(401).json({ success: false, mensaje: "Usuario o contraseña incorrectos." });
+    }
+});
+
 app.get("/movies", async(req, res) => {
     try{
         const movies = await db.collection("movies").find(
@@ -44,5 +61,5 @@ app.get("/movies", async(req, res) => {
 });
 
 app.listen(port, () => {
-    console.log("Servidor en http://10.200.29.244:4000");
+    console.log("Servidor en http://localhost:4000");
 });
