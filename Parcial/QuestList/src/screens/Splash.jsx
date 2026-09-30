@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { View, Text, Animated, StyleSheet } from 'react-native';
+import { View, Text, Animated, Image, StyleSheet } from 'react-native';
 
 export default function Splash({ navigation }) {
   const opacidad = useRef(new Animated.Value(0)).current;
@@ -30,7 +30,7 @@ export default function Splash({ navigation }) {
       <Animated.View
         style={{ opacity: opacidad, transform: [{ scale: escala }], alignItems: 'center' }}
       >
-        <Text style={styles.emoji}>📋</Text>
+        <Image source={require('../../assets/logo.png')} style={styles.logo} resizeMode="contain" />
         <Text style={styles.titulo}>QuestList</Text>
         <Text style={styles.subtitulo}>Convierte tus tareas en misiones</Text>
       </Animated.View>
@@ -45,6 +45,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  logo: { width: 140, height: 140 },
   emoji: { fontSize: 72 },
   titulo: { fontSize: 38, fontWeight: 'bold', color: '#bf8529', marginTop: 12 },
   subtitulo: { fontSize: 15, color: '#C7D2FE', marginTop: 6 },
