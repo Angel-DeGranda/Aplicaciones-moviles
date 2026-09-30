@@ -1,16 +1,13 @@
-import { View, Text, ScrollView, StyleSheet } from 'react-native';
-import { useMisiones, XP_POR_NIVEL } from '../context/MisionesContext';
+import { useState } from 'react';
+import { View, Text, ScrollView, TouchableOpacity, StyleSheet } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+import { useMisiones, XP_POR_NIVEL, obtenerRango } from '../context/MisionesContext';
 import BarraXP from '../components/BarraXP';
-
-function obtenerRango(nivel) {
-  if (nivel < 3) return { nombre: 'Novato', emoji: '🌱' };
-  if (nivel < 5) return { nombre: 'Aventurero', emoji: '🗡️' };
-  if (nivel < 8) return { nombre: 'Héroe', emoji: '🛡️' };
-  return { nombre: 'Leyenda', emoji: '👑' };
-}
+import ModalPerfil from '../components/ModalPerfil';
 
 export default function Perfil() {
-  const { misiones, xpTotal, nivel, xpEnNivel } = useMisiones();
+  const { misiones, xpTotal, nivel, xpEnNivel, perfil, actualizarPerfil } = useMisiones();
+  const [modalVisible, setModalVisible] = useState(false);
 
   const completadas = misiones.filter((m) => m.completada).length;
   const pendientes = misiones.length - completadas;
@@ -19,13 +16,16 @@ export default function Perfil() {
 
   return (
     <ScrollView style={styles.fondo} contentContainerStyle={styles.contenido}>
-
       <View style={styles.tarjetaNivel}>
         <View style={styles.avatar}>
           <Text style={styles.avatarEmoji}>{rango.emoji}</Text>
         </View>
-        <Text style={styles.rango}>{rango.nombre}</Text>
-        <Text style={styles.nivel}>Nivel {nivel}</Text>
+
+        <Text style={styles.nombre}>{perfil.nombre}</Text>
+        {perfil.frase ? <Text style={styles.frase}>"{perfil.frase}"</Text> : null}
+        <Text style={styles.nivel}>
+          {rango.nombre} · Nivel {nivel}
+        </Text>
 
         <View style={styles.barra}>
           <BarraXP progreso={xpEnNivel / XP_POR_NIVEL} />
@@ -34,6 +34,11 @@ export default function Perfil() {
           {xpEnNivel} / {XP_POR_NIVEL} XP
         </Text>
         <Text style={styles.faltante}>Te faltan {xpFaltante} XP para el siguiente nivel</Text>
+
+        <TouchableOpacity style={styles.botonEditar} onPress={() => setModalVisible(true)}>
+          <Ionicons name="create-outline" size={18} color="#1E1B4B" />
+          <Text style={styles.botonEditarTexto}>Editar perfil</Text>
+        </TouchableOpacity>
       </View>
 
       <Text style={styles.seccion}>Estadísticas</Text>
@@ -51,6 +56,16 @@ export default function Perfil() {
           <Text style={styles.statEtiqueta}>XP total</Text>
         </View>
       </View>
+
+      <ModalPerfil
+        visible={modalVisible}
+        perfil={perfil}
+        onClose={() => setModalVisible(false)}
+        onSave={(datos) => {
+          actualizarPerfil(datos);
+          setModalVisible(false);
+        }}
+      />
     </ScrollView>
   );
 }
@@ -77,11 +92,23 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   avatarEmoji: { fontSize: 44 },
-  rango: { fontSize: 22, fontWeight: 'bold', color: '#fff', marginTop: 12 },
-  nivel: { fontSize: 16, color: '#FACC15', marginTop: 2, marginBottom: 16 },
+  nombre: { fontSize: 22, fontWeight: 'bold', color: '#fff', marginTop: 12 },
+  frase: { fontSize: 14, fontStyle: 'italic', color: '#C7D2FE', marginTop: 4 },
+  nivel: { fontSize: 16, color: '#FACC15', marginTop: 6, marginBottom: 16 },
   barra: { width: '100%' },
   xpTexto: { color: '#C7D2FE', marginTop: 8 },
   faltante: { color: '#A5B4FC', fontSize: 13, marginTop: 4 },
+
+  botonEditar: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#FACC15',
+    paddingHorizontal: 16,
+    paddingVertical: 8,
+    borderRadius: 20,
+    marginTop: 18,
+  },
+  botonEditarTexto: { color: '#1E1B4B', fontWeight: 'bold', marginLeft: 6 },
 
   seccion: { fontSize: 18, fontWeight: 'bold', color: '#1E1B4B', marginBottom: 12 },
   filaStats: { flexDirection: 'row', justifyContent: 'space-between' },

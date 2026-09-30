@@ -6,7 +6,7 @@ const COLOR_DIFICULTAD = { Fácil: '#22C55E', Media: '#F59E0B', Difícil: '#EF44
 const MAX_PENDIENTES = 5;
 
 export default function Inicio({ navigation }) {
-  const { misiones, nivel, xpEnNivel } = useMisiones();
+  const { misiones, nivel, xpEnNivel, perfil } = useMisiones();
 
   const progreso = xpEnNivel / XP_POR_NIVEL;
   const pendientes = misiones.filter((m) => !m.completada).slice(-MAX_PENDIENTES).reverse();
@@ -23,7 +23,7 @@ export default function Inicio({ navigation }) {
   return (
     <ScrollView style={styles.fondo} contentContainerStyle={styles.contenido}>
       <View style={styles.tarjetaNivel}>
-        <Text style={styles.saludo}>¡Bienvenido, Angel!</Text>
+        <Text style={styles.saludo}>¡Bienvenido, {perfil.nombre}!</Text>
         <Text style={styles.nivel}>Nivel {nivel}</Text>
 
         <View style={styles.barraFondo}>

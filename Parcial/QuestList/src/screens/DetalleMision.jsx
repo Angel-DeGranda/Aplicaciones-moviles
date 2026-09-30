@@ -1,14 +1,17 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { View, Text, TouchableOpacity, Alert, Animated, StyleSheet } from 'react-native';
 import { useMisiones } from '../context/MisionesContext';
 import ModalMision from '../components/ModalMision';
+import ModalNivel from '../components/ModalNivel';
 
 const COLOR_DIFICULTAD = { Fácil: '#22C55E', Media: '#F59E0B', Difícil: '#EF4444' };
 
 export default function DetalleMision({ route, navigation }) {
   const { id } = route.params;
-  const { misiones, completarMision, eliminarMision, editarMision } = useMisiones();
+  const { misiones, nivel, completarMision, eliminarMision, editarMision } = useMisiones();
   const [modalVisible, setModalVisible] = useState(false);
+  const [nivelVisible, setNivelVisible] = useState(false);
+  const nivelPrevio = useRef(nivel);
 
   const escala = useRef(new Animated.Value(1)).current;
   const flotante = useRef(new Animated.Value(0)).current;
@@ -46,6 +49,11 @@ export default function DetalleMision({ route, navigation }) {
       },
     ]);
   };
+
+  useEffect(() => {
+    if (nivel > nivelPrevio.current) setNivelVisible(true);
+    nivelPrevio.current = nivel;
+  }, [nivel]);
 
   return (
     <View style={styles.fondo}>
@@ -112,6 +120,16 @@ export default function DetalleMision({ route, navigation }) {
         onSave={(datos) => {
           editarMision(id, datos);
           setModalVisible(false);
+        }}
+      />
+
+      <ModalNivel
+        visible={nivelVisible}
+        nivel={nivel}
+        onSeguir={() => setNivelVisible(false)}
+        onVerPerfil={() => {
+          setNivelVisible(false);
+          navigation.navigate('PerfilTab', { screen: 'MiPerfil' });
         }}
       />
     </View>

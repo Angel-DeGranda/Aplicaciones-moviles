@@ -25,9 +25,22 @@ const MISIONES_INICIALES = [
 
 const MisionesContext = createContext();
 
+export function obtenerRango(nivel) {
+  if (nivel < 3) return { nombre: 'Novato', emoji: '🌱' };
+  if (nivel < 5) return { nombre: 'Aventurero', emoji: '🗡️' };
+  if (nivel < 8) return { nombre: 'Héroe', emoji: '🛡️' };
+  return { nombre: 'Leyenda', emoji: '👑' };
+}
+
 export function MisionesProvider({ children }) {
   const [misiones, setMisiones] = useState(MISIONES_INICIALES);
   const [xpTotal, setXpTotal] = useState(0);
+
+  const [perfil, setPerfil] = useState({ nombre: 'Angel', frase: '' });
+
+  const actualizarPerfil = (datos) => {
+    setPerfil((prev) => ({ ...prev, ...datos }));
+  };
 
   const agregarMision = ({ titulo, descripcion, dificultad }) => {
     const nueva = {
@@ -76,11 +89,13 @@ export function MisionesProvider({ children }) {
     xpTotal,
     nivel,
     xpEnNivel,
+    perfil,
     agregarMision,
     editarMision,
     eliminarMision,
     completarMision,
     limpiarCompletadas,
+    actualizarPerfil,
   };
 
   return <MisionesContext.Provider value={value}>{children}</MisionesContext.Provider>;
