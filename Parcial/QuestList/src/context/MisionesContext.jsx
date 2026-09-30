@@ -4,10 +4,23 @@ export const XP_POR_DIFICULTAD = { Fácil: 10, Media: 25, Difícil: 50 };
 export const XP_POR_NIVEL = 100;
 
 const MISIONES_INICIALES = [
-  { id: '1', titulo: 'Estudiar para el examen', descripcion: '', dificultad: 'Difícil', xp: 50, completada: false },
-  { id: '2', titulo: 'Hacer ejercicio', descripcion: '', dificultad: 'Media', xp: 25, completada: false },
+  { id: '1', titulo: 'Estudiar para el examen parcial', descripcion: 'Repasar todos los temas del primer parcial.', dificultad: 'Difícil', xp: 50, completada: false },
+  { id: '2', titulo: 'Repasar los apuntes de clase', descripcion: '', dificultad: 'Media', xp: 25, completada: false },
   { id: '3', titulo: 'Tender la cama', descripcion: '', dificultad: 'Fácil', xp: 10, completada: false },
-  { id: '4', titulo: 'Leer 10 páginas', descripcion: '', dificultad: 'Fácil', xp: 10, completada: false },
+  { id: '4', titulo: 'Terminar el proyecto de la materia', descripcion: 'Dejar lista la entrega antes de la fecha límite.', dificultad: 'Difícil', xp: 50, completada: false },
+  { id: '5', titulo: 'Salir a caminar 20 minutos', descripcion: '', dificultad: 'Media', xp: 25, completada: false },
+  { id: '6', titulo: 'Tomar un vaso de agua', descripcion: '', dificultad: 'Fácil', xp: 10, completada: false },
+  { id: '7', titulo: 'Practicar código durante una hora', descripcion: 'Un ejercicio nuevo cada día.', dificultad: 'Difícil', xp: 50, completada: false },
+  { id: '8', titulo: 'Preparar la comida de la semana', descripcion: '', dificultad: 'Media', xp: 25, completada: false },
+  { id: '9', titulo: 'Revisar el correo', descripcion: '', dificultad: 'Fácil', xp: 10, completada: false },
+  { id: '10', titulo: 'Entregar la tarea de programación', descripcion: '', dificultad: 'Difícil', xp: 50, completada: false },
+  { id: '11', titulo: 'Ordenar el escritorio', descripcion: '', dificultad: 'Media', xp: 25, completada: false },
+  { id: '12', titulo: 'Regar las plantas', descripcion: '', dificultad: 'Fácil', xp: 10, completada: false },
+  { id: '13', titulo: 'Hacer ejercicio 45 minutos', descripcion: 'Rutina completa, sin saltarse el calentamiento.', dificultad: 'Difícil', xp: 50, completada: false },
+  { id: '14', titulo: 'Leer un capítulo de un libro', descripcion: '', dificultad: 'Media', xp: 25, completada: false },
+  { id: '15', titulo: 'Sacar la basura', descripcion: '', dificultad: 'Fácil', xp: 10, completada: false },
+  { id: '16', titulo: 'Lavar la ropa', descripcion: '', dificultad: 'Media', xp: 25, completada: false },
+  { id: '17', titulo: 'Organizar la mochila', descripcion: '', dificultad: 'Fácil', xp: 10, completada: false },
 ];
 
 const MisionesContext = createContext();

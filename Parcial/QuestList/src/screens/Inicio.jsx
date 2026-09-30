@@ -3,12 +3,13 @@ import { View, Text, Animated, ScrollView, StyleSheet, TouchableOpacity } from '
 import { useMisiones, XP_POR_NIVEL } from '../context/MisionesContext';
 
 const COLOR_DIFICULTAD = { Fácil: '#22C55E', Media: '#F59E0B', Difícil: '#EF4444' };
+const MAX_PENDIENTES = 5;
 
 export default function Inicio({ navigation }) {
   const { misiones, nivel, xpEnNivel } = useMisiones();
 
   const progreso = xpEnNivel / XP_POR_NIVEL;
-  const pendientes = misiones.filter((m) => !m.completada).slice(0, 3);
+  const pendientes = misiones.filter((m) => !m.completada).slice(-MAX_PENDIENTES).reverse();
 
   const anchoBarra = useRef(new Animated.Value(0)).current;
   useEffect(() => {
@@ -43,11 +44,11 @@ export default function Inicio({ navigation }) {
         </Text>
       </View>
 
-      <Text style={styles.seccion}>Misiones pendientes</Text>
-
       <TouchableOpacity onPress={() => navigation.navigate('Misiones')}>
         <Text style={{ color: '#4F46E5', fontWeight: 'bold', marginBottom: 12 }}>Ver todas mis misiones →</Text>
       </TouchableOpacity>
+
+      <Text style={styles.seccion}>Misiones que llevan más tiempo pendientes:</Text>
 
       {pendientes.length === 0 ? (
         <View style={styles.vacio}>
