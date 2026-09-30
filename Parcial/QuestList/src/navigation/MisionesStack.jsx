@@ -6,9 +6,22 @@ const Stack = createNativeStackNavigator();
 
 export default function MisionesStack() {
   return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="ListaMisiones" component={ListaMisiones} />
-      <Stack.Screen name="DetalleMision" component={DetalleMision} />
+    <Stack.Navigator
+      screenOptions={{
+        headerStyle: { backgroundColor: '#1E1B4B' },
+        headerTintColor: '#fff',
+      }}
+    >
+      <Stack.Screen
+        name="ListaMisiones"
+        component={ListaMisiones}
+        options={{ title: 'Mis Misiones' }}
+      />
+      <Stack.Screen
+        name="DetalleMision"
+        component={DetalleMision}
+        options={{ title: 'Detalle' }}
+      />
     </Stack.Navigator>
   );
 }

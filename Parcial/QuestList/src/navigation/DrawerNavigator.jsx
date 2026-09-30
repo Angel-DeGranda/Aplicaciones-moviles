@@ -1,7 +1,6 @@
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { Ionicons } from '@expo/vector-icons';
-import Inicio from '../screens/Inicio';
-import TabNavigator from './TabNavigator';
+import Perfil from '../screens/Perfil';
 import Ayuda from '../screens/Ayuda';
 import AcercaDe from '../screens/AcercaDe';
 
@@ -21,14 +20,9 @@ export default function DrawerNavigator() {
       }}
     >
       <Drawer.Screen
-        name="Inicio"
-        component={Inicio}
-        options={{ drawerIcon: icono('home-outline') }}
-      />
-      <Drawer.Screen
-        name="MisMisiones"
-        component={TabNavigator}
-        options={{ title: 'Mis Misiones', drawerIcon: icono('flag-outline') }}
+        name="MiPerfil"
+        component={Perfil}
+        options={{ title: 'Perfil', drawerIcon: icono('person-outline') }}
       />
       <Drawer.Screen
         name="Ayuda"

@@ -4,7 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { MisionesProvider } from './src/context/MisionesContext';
 import Splash from './src/screens/Splash';
-import DrawerNavigator from './src/navigation/DrawerNavigator';
+import TabNavigator from './src/navigation/TabNavigator';
 
 const Stack = createNativeStackNavigator();
 
@@ -14,7 +14,7 @@ export default function App() {
       <NavigationContainer>
         <Stack.Navigator initialRouteName="Splash" screenOptions={{ headerShown: false }}>
           <Stack.Screen name="Splash" component={Splash} />
-          <Stack.Screen name="Drawer" component={DrawerNavigator} />
+          <Stack.Screen name="Tabs" component={TabNavigator} />
         </Stack.Navigator>
       </NavigationContainer>
     </MisionesProvider>

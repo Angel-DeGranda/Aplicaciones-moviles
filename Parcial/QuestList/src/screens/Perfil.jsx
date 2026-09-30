@@ -2,7 +2,6 @@ import { View, Text, ScrollView, StyleSheet } from 'react-native';
 import { useMisiones, XP_POR_NIVEL } from '../context/MisionesContext';
 import BarraXP from '../components/BarraXP';
 
-// El rango depende del nivel
 function obtenerRango(nivel) {
   if (nivel < 3) return { nombre: 'Novato', emoji: '🌱' };
   if (nivel < 5) return { nombre: 'Aventurero', emoji: '🗡️' };
@@ -20,7 +19,7 @@ export default function Perfil() {
 
   return (
     <ScrollView style={styles.fondo} contentContainerStyle={styles.contenido}>
-      {/* Tarjeta principal */}
+
       <View style={styles.tarjetaNivel}>
         <View style={styles.avatar}>
           <Text style={styles.avatarEmoji}>{rango.emoji}</Text>
@@ -37,7 +36,6 @@ export default function Perfil() {
         <Text style={styles.faltante}>Te faltan {xpFaltante} XP para el siguiente nivel</Text>
       </View>
 
-      {/* Estadísticas */}
       <Text style={styles.seccion}>Estadísticas</Text>
       <View style={styles.filaStats}>
         <View style={styles.stat}>

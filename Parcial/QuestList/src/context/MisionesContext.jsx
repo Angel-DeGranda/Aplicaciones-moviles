@@ -59,16 +59,16 @@ export function MisionesProvider({ children }) {
   const xpEnNivel = xpTotal % XP_POR_NIVEL;
 
   const value = {
-  misiones,
-  xpTotal,
-  nivel,
-  xpEnNivel,
-  agregarMision,
-  editarMision,
-  eliminarMision,
-  completarMision,
-  limpiarCompletadas,
-};
+    misiones,
+    xpTotal,
+    nivel,
+    xpEnNivel,
+    agregarMision,
+    editarMision,
+    eliminarMision,
+    completarMision,
+    limpiarCompletadas,
+  };
 
   return <MisionesContext.Provider value={value}>{children}</MisionesContext.Provider>;
 }

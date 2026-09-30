@@ -93,13 +93,17 @@ export default function ListaMisiones({ navigation }) {
         }
         ListEmptyComponent={
           <View style={styles.vacio}>
-            <Text style={styles.vacioTexto}>🎯 Aún no tienes misiones</Text>
-            <Text style={styles.vacioSub}>Toca el botón + para crear la primera</Text>
+            <Text style={styles.vacioTexto}>¡Aún no tienes misiones!</Text>
+            <Text style={styles.vacioSub}>Toca el botón + para crear una misión</Text>
           </View>
         }
       />
 
-      <TouchableOpacity style={styles.boton} onPress={() => setModalVisible(true)}>
+      <TouchableOpacity
+        style={styles.boton}
+        activeOpacity={0.8}
+        onPress={() => setModalVisible(true)}
+      >
         <Ionicons name="add" size={32} color="#1E1B4B" />
       </TouchableOpacity>
 
@@ -150,5 +154,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     elevation: 6,
+    shadowColor: '#1E1B4B',
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.4,
+    shadowRadius: 8,
+    elevation: 10,
   },
 });

@@ -10,22 +10,19 @@ export default function DetalleMision({ route, navigation }) {
   const { misiones, completarMision, eliminarMision, editarMision } = useMisiones();
   const [modalVisible, setModalVisible] = useState(false);
 
-  // Valores de animación (los hooks van antes del return condicional)
   const escala = useRef(new Animated.Value(1)).current;
   const flotante = useRef(new Animated.Value(0)).current;
 
   const mision = misiones.find((m) => m.id === id);
-  if (!mision) return null; // por si se acaba de eliminar
+  if (!mision) return null;
 
   const animarCompletado = () => {
     flotante.setValue(0);
     Animated.parallel([
-      // Pulso de la tarjeta
       Animated.sequence([
         Animated.timing(escala, { toValue: 1.06, duration: 150, useNativeDriver: true }),
         Animated.spring(escala, { toValue: 1, friction: 4, useNativeDriver: true }),
       ]),
-      // "+XP" que sube y se desvanece
       Animated.timing(flotante, { toValue: 1, duration: 1100, useNativeDriver: true }),
     ]).start();
   };
@@ -52,9 +49,6 @@ export default function DetalleMision({ route, navigation }) {
 
   return (
     <View style={styles.fondo}>
-      <TouchableOpacity onPress={() => navigation.goBack()}>
-        <Text style={styles.volver}>← Volver</Text>
-      </TouchableOpacity>
 
       <View style={styles.zonaTarjeta}>
         <Animated.View style={[styles.tarjeta, { transform: [{ scale: escala }] }]}>
@@ -76,7 +70,6 @@ export default function DetalleMision({ route, navigation }) {
           </Text>
         </Animated.View>
 
-        {/* +XP flotante (invisible hasta que se dispara la animación) */}
         <Animated.Text
           pointerEvents="none"
           style={[

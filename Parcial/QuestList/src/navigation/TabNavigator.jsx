@@ -1,32 +1,42 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
+import Inicio from '../screens/Inicio';
 import MisionesStack from './MisionesStack';
-import Perfil from '../screens/Perfil';
+import DrawerNavigator from './DrawerNavigator';
 
 const Tab = createBottomTabNavigator();
+
+const icono = (nombre) => ({ color, size }) => (
+  <Ionicons name={nombre} size={size} color={color} />
+);
 
 export default function TabNavigator() {
   return (
     <Tab.Navigator
       screenOptions={{
-        headerShown: false,
+        headerStyle: { backgroundColor: '#1E1B4B' },
+        headerTintColor: '#fff',
         tabBarActiveTintColor: '#4F46E5',
         tabBarInactiveTintColor: '#9CA3AF',
       }}
     >
+
+      <Tab.Screen
+        name="Inicio"
+        component={Inicio}
+        options={{ tabBarIcon: icono('home') }}
+      />
+
       <Tab.Screen
         name="Misiones"
         component={MisionesStack}
-        options={{
-          tabBarIcon: ({ color, size }) => <Ionicons name="list" size={size} color={color} />,
-        }}
+        options={{ headerShown: false, tabBarIcon: icono('list') }}
       />
+
       <Tab.Screen
-        name="Perfil"
-        component={Perfil}
-        options={{
-          tabBarIcon: ({ color, size }) => <Ionicons name="person" size={size} color={color} />,
-        }}
+        name="PerfilTab"
+        component={DrawerNavigator}
+        options={{ headerShown: false, title: 'Perfil', tabBarIcon: icono('person') }}
       />
     </Tab.Navigator>
   );

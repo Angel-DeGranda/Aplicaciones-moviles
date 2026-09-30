@@ -1,14 +1,5 @@
 import { useState, useEffect } from 'react';
-import {
-  Modal,
-  View,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  KeyboardAvoidingView,
-  Platform,
-  StyleSheet,
-} from 'react-native';
+import { Modal, View, Text, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform, StyleSheet, Pressable, Alert } from 'react-native';
 
 const DIFICULTADES = ['Fácil', 'Media', 'Difícil'];
 const XP = { Fácil: 10, Media: 25, Difícil: 50 };
@@ -25,8 +16,7 @@ export default function ModalMision({ visible, onClose, onSave, mision }) {
   const [errores, setErrores] = useState({});
 
   const esEdicion = !!mision;
-
-  // Cada vez que se abre: precarga si es edición, o limpia si es creación
+  
   useEffect(() => {
     if (visible) {
       setTitulo(mision?.titulo ?? '');
@@ -54,7 +44,7 @@ export default function ModalMision({ visible, onClose, onSave, mision }) {
   };
 
   const guardar = () => {
-    if (!validar()) return; // si hay errores, no se guarda
+    if (!validar()) return; 
     onSave({
       titulo: titulo.trim(),
       descripcion: descripcion.trim(),
@@ -62,18 +52,36 @@ export default function ModalMision({ visible, onClose, onSave, mision }) {
     });
   };
 
+  const hayCambios =
+    titulo !== (mision?.titulo ?? '') ||
+    descripcion !== (mision?.descripcion ?? '') ||
+    dificultad !== (mision?.dificultad ?? null);
+
+  const cerrarConAviso = () => {
+    if (!hayCambios) {
+      onClose();
+      return;
+    }
+    Alert.alert('Descartar cambios', '¿Cerrar sin guardar?', [
+      { text: 'Seguir editando', style: 'cancel' },
+      { text: 'Descartar', style: 'destructive', onPress: onClose },
+    ]);
+  };
+
   return (
-    <Modal visible={visible} animationType="slide" transparent onRequestClose={onClose}>
+    <Modal visible={visible} animationType="slide" transparent onRequestClose={cerrarConAviso}>
       <KeyboardAvoidingView
         style={styles.overlay}
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}
       >
+
+        <Pressable style={StyleSheet.absoluteFill} onPress={cerrarConAviso} />
+
         <View style={styles.caja}>
           <Text style={styles.encabezado}>
             {esEdicion ? 'Editar misión' : 'Nueva misión'}
           </Text>
 
-          {/* Título */}
           <Text style={styles.etiqueta}>Título</Text>
           <TextInput
             style={[styles.input, errores.titulo && styles.inputError]}
@@ -84,7 +92,6 @@ export default function ModalMision({ visible, onClose, onSave, mision }) {
           />
           {errores.titulo && <Text style={styles.error}>{errores.titulo}</Text>}
 
-          {/* Descripción */}
           <Text style={styles.etiqueta}>Descripción (opcional)</Text>
           <TextInput
             style={[styles.input, styles.inputMultilinea, errores.descripcion && styles.inputError]}
@@ -99,7 +106,6 @@ export default function ModalMision({ visible, onClose, onSave, mision }) {
           </Text>
           {errores.descripcion && <Text style={styles.error}>{errores.descripcion}</Text>}
 
-          {/* Dificultad */}
           <Text style={styles.etiqueta}>Dificultad</Text>
           <View style={styles.filaDificultad}>
             {DIFICULTADES.map((d) => {
@@ -122,7 +128,6 @@ export default function ModalMision({ visible, onClose, onSave, mision }) {
           </View>
           {errores.dificultad && <Text style={styles.error}>{errores.dificultad}</Text>}
 
-          {/* Botones */}
           <View style={styles.filaBotones}>
             <TouchableOpacity style={[styles.boton, styles.botonCancelar]} onPress={onClose}>
               <Text style={styles.botonCancelarTexto}>Cancelar</Text>

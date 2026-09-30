@@ -1,9 +1,9 @@
 import { View, Text, Image, ScrollView, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
-const AUTOR = 'Angel'; // cámbialo por tu nombre completo si quieres
+const AUTOR = 'Angel De Granda';
 const VERSION = '1.0.0';
-const TECNOLOGIAS = ['React Native', 'Expo', 'React Navigation', 'Context API', 'Animated', 'Sensores (acelerómetro)'];
+const TECNOLOGIAS = [ 'React Native', 'Expo', 'Splash Screen', 'Stack Navigator', 'Tab Bar', 'Drawer', 'Modales', 'FlatList', 'Sensores (acelerómetro)', 'Animaciones (Animated)', 'Imágenes', ];
 
 export default function AcercaDe() {
   return (

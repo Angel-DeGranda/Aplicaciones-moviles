@@ -1,10 +1,10 @@
 import { useEffect, useRef } from 'react';
-import { View, Text, Animated, ScrollView, StyleSheet } from 'react-native';
+import { View, Text, Animated, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
 import { useMisiones, XP_POR_NIVEL } from '../context/MisionesContext';
 
 const COLOR_DIFICULTAD = { Fácil: '#22C55E', Media: '#F59E0B', Difícil: '#EF4444' };
 
-export default function Inicio() {
+export default function Inicio({ navigation }) {
   const { misiones, nivel, xpEnNivel } = useMisiones();
 
   const progreso = xpEnNivel / XP_POR_NIVEL;
@@ -21,7 +21,6 @@ export default function Inicio() {
 
   return (
     <ScrollView style={styles.fondo} contentContainerStyle={styles.contenido}>
-      {/* Tarjeta de bienvenida + nivel */}
       <View style={styles.tarjetaNivel}>
         <Text style={styles.saludo}>¡Bienvenido, Angel!</Text>
         <Text style={styles.nivel}>Nivel {nivel}</Text>
@@ -44,13 +43,16 @@ export default function Inicio() {
         </Text>
       </View>
 
-      {/* Misiones pendientes */}
       <Text style={styles.seccion}>Misiones pendientes</Text>
+
+      <TouchableOpacity onPress={() => navigation.navigate('Misiones')}>
+        <Text style={{ color: '#4F46E5', fontWeight: 'bold', marginBottom: 12 }}>Ver todas mis misiones →</Text>
+      </TouchableOpacity>
 
       {pendientes.length === 0 ? (
         <View style={styles.vacio}>
-          <Text style={styles.vacioTexto}>🎯 No tienes misiones pendientes</Text>
-          <Text style={styles.vacioSub}>Crea tu primera misión para ganar XP</Text>
+          <Text style={styles.vacioTexto}>¡No tienes misiones pendientes!</Text>
+          <Text style={styles.vacioSub}>Crea misiones para ganar XP</Text>
         </View>
       ) : (
         pendientes.map((m) => (
@@ -97,8 +99,8 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     padding: 16,
     marginBottom: 10,
-    elevation: 2, // sombra en Android
-    shadowColor: '#000', // sombra en iOS
+    elevation: 2,
+    shadowColor: '#000',
     shadowOpacity: 0.08,
     shadowRadius: 4,
     shadowOffset: { width: 0, height: 2 },
