@@ -2,20 +2,6 @@
   "expo": {
     "name": "FACERECOGNITION",
     "slug": "FACERECOGNITION",
-    "plugins": [
-      [
-        "expo-camera",
-        {
-          "cameraPermission": "Necesitamos la cámara para tomar fotos."
-        }
-      ],
-      [
-        "expo-media-library",
-        {
-          "savePhotosPermission": "Necesitamos guardar tus fotos en la galería."
-        }
-      ]
-    ],
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -28,7 +14,7 @@
         "backgroundColor": "#E6F4FE",
         "foregroundImage": "./assets/android-icon-foreground.png",
         "backgroundImage": "./assets/android-icon-background.png",
-        "monochromeImage": "./assets/android-icon-monochrome.png"
+        "monochromeImage": "./assets/android-icon-monochrome.png",
       },
       "permissions": [
         "android.permission.CAMERA",

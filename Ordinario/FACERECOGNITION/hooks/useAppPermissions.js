@@ -1,27 +1,29 @@
-import { useCameraPermissions } from 'expo-camera';
+import { useState } from 'react';
+import { useCameraPermission } from 'react-native-vision-camera';
 import * as MediaLibrary from 'expo-media-library/legacy';
 
 export default function useAppPermissions() {
-  const [cameraPermission, requestCamera] = useCameraPermissions();
+  const { hasPermission, requestPermission } = useCameraPermission();
   const [mediaPermission, requestMedia] = MediaLibrary.usePermissions({
     writeOnly: true,
   });
+  const [denied, setDenied] = useState(false);
 
-  // Mientras los permisos no se han consultado, el valor es null
-  const loading = cameraPermission === null || mediaPermission === null;
-
-  const granted =
-    !!cameraPermission?.granted && !!mediaPermission?.granted;
-
-  // Si es false, el sistema ya no mostrará el aviso: hay que mandar al usuario a Ajustes
-  const canAskAgain =
-    (cameraPermission?.canAskAgain ?? true) &&
-    (mediaPermission?.canAskAgain ?? true);
+  const loading = mediaPermission === null;
+  const granted = !!hasPermission && !!mediaPermission?.granted;
 
   const request = async () => {
-    if (!cameraPermission?.granted) await requestCamera();
-    if (!mediaPermission?.granted) await requestMedia();
+    let camera = !!hasPermission;
+    let media = !!mediaPermission?.granted;
+
+    if (!camera) camera = !!(await requestPermission());
+    if (!media) {
+      const result = await requestMedia();
+      media = !!result?.granted;
+    }
+    // Si algo quedó negado, PermissionGate mostrará "Abrir ajustes"
+    setDenied(!(camera && media));
   };
 
-  return { granted, loading, canAskAgain, request };
+  return { granted, loading, canAskAgain: !denied, request };
 }
