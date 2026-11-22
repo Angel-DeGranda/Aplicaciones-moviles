@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="burbuja_recibida">#2C2C2E</color>
+    <color name="burbuja_recibida_texto">#E6E1E5</color>
+    <!-- En modo oscuro la burbuja enviada es clara: azul más oscuro -->
+    <color name="tick_leido">#0B57D0</color>
+</resources>

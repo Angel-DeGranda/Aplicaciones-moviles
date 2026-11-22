@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Fase 12: la sesión (tokens de Supabase) y el token FCM NO se respaldan.
+     Si se copiaran a otro teléfono, ese teléfono entraría con tu cuenta.
+     (Android 11 o anterior) -->
+<full-backup-content>
+    <exclude domain="sharedpref" path="sesion.xml" />
+    <exclude domain="sharedpref" path="fcm.xml" />
+</full-backup-content>

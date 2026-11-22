@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:stretchColumns="1"
+    android:padding="24dp">
+
+    <TableRow>
+        <TextView
+            android:layout_span="2"
+            android:text="Datos personales"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:paddingBottom="16dp" />
+    </TableRow>
+
+    <TableRow>
+        <TextView android:text="Nombre:" android:padding="8dp" />
+        <EditText android:hint="Tu nombre" android:inputType="textPersonName" />
+    </TableRow>
+
+    <TableRow>
+        <TextView android:text="Edad:" android:padding="8dp" />
+        <EditText android:hint="Tu edad" android:inputType="number" />
+    </TableRow>
+
+    <TableRow>
+        <TextView android:text="Correo:" android:padding="8dp" />
+        <EditText android:hint="Tu correo" android:inputType="textEmailAddress" />
+    </TableRow>
+
+    <TableRow>
+        <Button
+            android:layout_column="1"
+            android:text="Guardar" />
+    </TableRow>
+
+</TableLayout>

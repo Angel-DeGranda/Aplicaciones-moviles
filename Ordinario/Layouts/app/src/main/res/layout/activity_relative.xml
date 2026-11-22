@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="24dp">
+
+    <!-- La foto es la referencia: todo lo demás se coloca respecto a ella -->
+    <ImageView
+        android:id="@+id/foto"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignParentStart="true"
+        android:src="@android:drawable/ic_menu_myplaces" />
+
+    <TextView
+        android:id="@+id/nombre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/foto"
+        android:layout_alignTop="@id/foto"
+        android:layout_marginStart="16dp"
+        android:text="Ana López"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/telefono"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/foto"
+        android:layout_below="@id/nombre"
+        android:layout_marginStart="16dp"
+        android:text="229 123 4567" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/foto"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="24dp"
+        android:text="Llamar" />
+
+</RelativeLayout>

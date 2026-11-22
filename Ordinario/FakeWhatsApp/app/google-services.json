@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "865986596642",
+    "project_id": "fakewhatsapp-5fc71",
+    "storage_bucket": "fakewhatsapp-5fc71.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:865986596642:android:86b510a632611cd1b65f7b",
+        "android_client_info": {
+          "package_name": "com.example.fakewhatsapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAoszaDQh7ibpJrjvQGeNiB0rR4YxD9OaA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

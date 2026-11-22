@@ -1,0 +1,24 @@
+*.iml
+.gradle
+/local.properties
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+
+# ----- Fase 12: credenciales que nunca deben subirse -----
+secrets.properties
+# Clave privada de la cuenta de servicio de Firebase (solo va en Supabase Secrets)
+*firebase-adminsdk*.json
+# Llave para firmar el APK
+*.jks
+*.keystore
+keystore.properties

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="burbuja_recibida">#E9E9EB</color>
+    <color name="burbuja_recibida_texto">#1C1B1F</color>
+    <!-- Palomitas azules (leído) sobre la burbuja enviada (colorPrimary oscuro) -->
+    <color name="tick_leido">#7FD8FF</color>
+</resources>

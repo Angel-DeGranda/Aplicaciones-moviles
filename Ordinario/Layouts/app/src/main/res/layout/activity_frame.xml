@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Capa 1 (fondo): lo primero que se declara queda hasta abajo -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#1E88E5" />
+
+    <!-- Capa 2: texto centrado -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Texto sobre el fondo"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp" />
+
+    <!-- Capa 3: texto en la esquina superior izquierda -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|start"
+        android:layout_margin="16dp"
+        android:text="Capa superior"
+        android:textColor="#FFFFFF" />
+
+    <!-- Capa 4: botón en la esquina inferior derecha -->
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="24dp"
+        android:text="Botón en esquina" />
+
+</FrameLayout>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingStart="64dp"
+    android:paddingEnd="12dp"
+    android:paddingTop="2dp"
+    android:paddingBottom="2dp">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:orientation="vertical"
+        android:background="@drawable/bubble_enviado"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="6dp">
+
+        <!-- Foto enviada (Fase 11). Tamaño fijo para que la lista no salte al cargar -->
+        <ImageView
+            android:id="@+id/imgFoto"
+            android:layout_width="220dp"
+            android:layout_height="220dp"
+            android:layout_marginBottom="4dp"
+            android:scaleType="centerCrop"
+            android:contentDescription="Foto"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tvContenido"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="?attr/colorOnPrimary"
+            android:textSize="16sp" />
+
+        <!-- Hora + estado (✓ enviado, ✓✓ recibido, ✓✓ azul leído) -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginTop="2dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/tvHora"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:alpha="0.75"
+                android:textColor="?attr/colorOnPrimary"
+                android:textSize="11sp" />
+
+            <TextView
+                android:id="@+id/tvEstado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:textColor="?attr/colorOnPrimary"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
